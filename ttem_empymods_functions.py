@@ -163,15 +163,15 @@ def plot_model(model, label='Res model 1'):
     thick_plt = np.insert(thick_plt.T,0,0)
     thick_plt[-1] = thick_plt[-1] + 50
 
-    plt.plot(res_plt, thick_plt, linewidth =2, label = label)
+    plt.plot(res_plt, thick_plt, linewidth =2, label = label, color = 'k')
     
     plt.xscale('log')
     plt.legend()
     plt.xlabel("Resisitivity [ohmm]")
     plt.ylabel('Depth [m]')
     plt.grid(which='both', c='w')
-    plt.ylim(125,0)
-    plt.xlim(10,500)
+    plt.ylim(40,0)
+    plt.xlim(1e1,1e3)
 
     return
 
@@ -592,7 +592,7 @@ def tTEM_pointsource(moment, model, waveform, gates, gates_tosim = True,verbose=
         time=time,          # Required times
         signal=1,           # Switch-on response
         ft='dlf',           # Use DLF
-        ftarg={'dlf': 'key_81_CosSin_2009'},  # Short, fast filter; if you
+        ftarg={'dlf': 'key_201_2012'},  # Short, fast filter; if you
         verb=0,                 # need higher accuracy choose a longer filter.
     )
 
@@ -745,7 +745,8 @@ def tTEM_pointsource_test(moment, model, waveform, gates, gates_tosim=True, verb
 
     # === APPLY GAUSSIAN-RLC FILTER BEFORE FRONT GATE ===
     pre_front_gate_cutofffreq = 4.2e5  # Given cutoff frequency
-    pre_front_gate_damping = 0.84  # Given damping factor
+    # pre_front_gate_cutofffreq = 5e4  # Given cutoff frequency
+    pre_front_gate_damping = .84  # Given damping factor
     pre_front_gate_filter = gaussian_rlc_filter(freq, pre_front_gate_cutofffreq, pre_front_gate_damping)
     EM *= pre_front_gate_filter
 

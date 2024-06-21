@@ -5,3 +5,5 @@ __pycache__/ttem_forward_function.cpython-311.pyc
 __pycache__/ttemempymods.cpython-311.pyc
 Waveforms.png
 results/*
+data/*
+__pycache__/*
